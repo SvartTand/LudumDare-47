@@ -11,7 +11,10 @@ public class PlayerController : MonoBehaviour
 
     private float distToground;
 
-    
+    public SpringJoint2D joint;
+    public Rigidbody2D world;
+
+    public float grappleRange;
 
     // Start is called before the first frame update
     void Start()
@@ -23,14 +26,37 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        //joint.anchor = transform.position;
+
         rb.AddForce(new Vector2(Input.GetAxis("Horizontal") * Time.deltaTime * rotForce, 0));
         rb.AddForce(new Vector2(0, Input.GetAxis("Horizontal") * Time.deltaTime * rotForce));
-
+        
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
             rb.AddForce(Vector2.up * jumpForce);
         }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
+
+            //Debug.Log(mousePos2D);
+
+            joint.connectedAnchor = mousePos2D;
+            joint.connectedBody = world;
+            
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            joint.connectedBody = rb;
+        }
+
         
+
+
     }
 
     private bool IsGrounded()
@@ -39,7 +65,7 @@ public class PlayerController : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up, distToground);
         
 
-        Debug.Log(hit.collider.tag);
+        //Debug.Log(hit.collider.tag);
 
         return Physics2D.Raycast(transform.position, -Vector2.up, distToground);
     }
