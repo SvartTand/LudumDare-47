@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
 
     private float distToground;
 
-    public SpringJoint2D joint;
+    public DistanceJoint2D joint;
     public Rigidbody2D world;
 
     public float grappleRange;
@@ -84,9 +84,9 @@ public class PlayerController : MonoBehaviour
             Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
 
             //Debug.Log(mousePos2D);
-
-            joint.connectedAnchor = mousePos2D;
             joint.connectedBody = world;
+            joint.connectedAnchor = mousePos2D;
+            
 
 
             LineList[0] = transform.position;
@@ -94,6 +94,8 @@ public class PlayerController : MonoBehaviour
             LineList[1] = new Vector3(joint.connectedAnchor.x, joint.connectedAnchor.y, 0);
             LineRenderer.gameObject.active = true;
             LineRenderer.SetPositions(LineList);
+
+            Debug.Log(joint.connectedAnchor.y + ", " + mousePos2D.y + ", " + LineList[1].y);
 
 
         }

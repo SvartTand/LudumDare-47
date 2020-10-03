@@ -31,7 +31,7 @@ public class GameHandler : MonoBehaviour
         
 
         //time += Time.deltaTime;
-        Debug.Log(t);
+        //Debug.Log(t);
         timeText.text = string.Format("{0:D2}:{1:D2}:{2:D2}", t.Minutes, t.Seconds, t.Milliseconds);
     }
 
