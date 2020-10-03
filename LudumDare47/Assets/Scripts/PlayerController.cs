@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
         Hamster.transform.position = transform.position;
         //joint.anchor = transform.position;
 
-        rb.AddForce(new Vector2(Input.GetAxis("Horizontal") * Time.deltaTime * rotForce, 0));
+        
 
         if(Input.GetAxis("Horizontal") > 0)
         {
@@ -54,8 +54,14 @@ public class PlayerController : MonoBehaviour
         {
             HamsterAnimation.Play("HamsterIdle");
         }
-        rb.AddForce(new Vector2(0, Input.GetAxis("Horizontal") * Time.deltaTime * rotForce));
+
+        if (IsGrounded())
+        {
+            rb.AddForce(new Vector2(0, Input.GetAxis("Horizontal") * Time.deltaTime * rotForce));
+            rb.AddForce(new Vector2(Input.GetAxis("Horizontal") * Time.deltaTime * rotForce, 0));
+        }
         
+
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
             rb.AddForce(Vector2.up * jumpForce);
