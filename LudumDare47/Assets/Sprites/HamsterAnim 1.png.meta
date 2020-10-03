@@ -137,12 +137,12 @@ TextureImporter:
       name: HamsterAnim 1_0
       rect:
         serializedVersion: 2
-        x: 8
-        y: 194
-        width: 36
-        height: 21
+        x: 0
+        y: 192
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -158,12 +158,12 @@ TextureImporter:
       name: HamsterAnim 1_1
       rect:
         serializedVersion: 2
-        x: 72
-        y: 194
-        width: 38
-        height: 21
+        x: 64
+        y: 192
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -179,12 +179,12 @@ TextureImporter:
       name: HamsterAnim 1_2
       rect:
         serializedVersion: 2
-        x: 136
-        y: 195
-        width: 35
-        height: 20
+        x: 128
+        y: 192
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -200,12 +200,12 @@ TextureImporter:
       name: HamsterAnim 1_3
       rect:
         serializedVersion: 2
-        x: 200
-        y: 195
-        width: 38
-        height: 20
+        x: 192
+        y: 192
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -221,12 +221,12 @@ TextureImporter:
       name: HamsterAnim 1_4
       rect:
         serializedVersion: 2
-        x: 8
-        y: 130
-        width: 35
-        height: 21
+        x: 0
+        y: 128
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -242,12 +242,12 @@ TextureImporter:
       name: HamsterAnim 1_5
       rect:
         serializedVersion: 2
-        x: 72
-        y: 130
-        width: 35
-        height: 21
+        x: 64
+        y: 128
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -263,12 +263,12 @@ TextureImporter:
       name: HamsterAnim 1_6
       rect:
         serializedVersion: 2
-        x: 136
-        y: 130
-        width: 35
-        height: 20
+        x: 128
+        y: 128
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
