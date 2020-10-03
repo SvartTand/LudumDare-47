@@ -29,6 +29,15 @@ TextureImporter:
   - first:
       213: -5127626667742347813
     second: DirtTileSet_8
+  - first:
+      213: -7530918212569575079
+    second: DirtTileSet_9
+  - first:
+      213: -3140058079387920504
+    second: DirtTileSet_10
+  - first:
+      213: 6462413179211214939
+    second: DirtTileSet_11
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -206,8 +215,8 @@ TextureImporter:
       name: DirtTileSet_3
       rect:
         serializedVersion: 2
-        x: 16
-        y: 96
+        x: 80
+        y: 112
         width: 16
         height: 16
       alignment: 0
@@ -227,8 +236,8 @@ TextureImporter:
       name: DirtTileSet_4
       rect:
         serializedVersion: 2
-        x: 32
-        y: 96
+        x: 112
+        y: 112
         width: 16
         height: 16
       alignment: 0
@@ -248,7 +257,7 @@ TextureImporter:
       name: DirtTileSet_5
       rect:
         serializedVersion: 2
-        x: 48
+        x: 16
         y: 96
         width: 16
         height: 16
@@ -269,8 +278,8 @@ TextureImporter:
       name: DirtTileSet_6
       rect:
         serializedVersion: 2
-        x: 16
-        y: 80
+        x: 32
+        y: 96
         width: 16
         height: 16
       alignment: 0
@@ -290,8 +299,8 @@ TextureImporter:
       name: DirtTileSet_7
       rect:
         serializedVersion: 2
-        x: 32
-        y: 80
+        x: 48
+        y: 96
         width: 16
         height: 16
       alignment: 0
@@ -311,7 +320,7 @@ TextureImporter:
       name: DirtTileSet_8
       rect:
         serializedVersion: 2
-        x: 48
+        x: 16
         y: 80
         width: 16
         height: 16
@@ -324,6 +333,69 @@ TextureImporter:
       bones: []
       spriteID: bddb56886b207d8b0800000000000000
       internalID: -5127626667742347813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DirtTileSet_9
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 80
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 951554349cdcc7790800000000000000
+      internalID: -7530918212569575079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DirtTileSet_10
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 80
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 887dcf340d54c64d0800000000000000
+      internalID: -3140058079387920504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DirtTileSet_11
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 80
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b50ffa21c8a1fa950800000000000000
+      internalID: 6462413179211214939
       vertices: []
       indices: 
       edges: []

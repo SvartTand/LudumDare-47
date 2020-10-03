@@ -60,9 +60,20 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(new Vector2(0, Input.GetAxis("Horizontal") * Time.deltaTime * rotForce));
             rb.AddForce(new Vector2(Input.GetAxis("Horizontal") * Time.deltaTime * rotForce, 0));
         }
-        
 
-        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (Hamster.transform.localScale.x <= 0)
+            {
+                rb.AddForce(Vector2.right * jumpForce);
+            }
+            else
+            {
+                rb.AddForce(Vector2.left * jumpForce);
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.W) && IsGrounded())
         {
             rb.AddForce(Vector2.up * jumpForce);
         }
