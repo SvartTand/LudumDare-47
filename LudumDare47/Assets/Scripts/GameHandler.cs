@@ -22,6 +22,9 @@ public class GameHandler : MonoBehaviour
     public Text Lap2;
     public Text Lap3;
 
+    public Text lapText;
+
+    private bool start = false;
 
     private bool[] gate = new bool[3];
 
@@ -30,8 +33,11 @@ public class GameHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        time += Time.deltaTime;
+        if (start)
+        {
+            time += Time.deltaTime;
+        }
+        
         System.TimeSpan t = System.TimeSpan.FromSeconds(time);
         
 
@@ -54,6 +60,7 @@ public class GameHandler : MonoBehaviour
                 System.TimeSpan t = System.TimeSpan.FromSeconds(time);
                 Lap1.text = "Lap 1: \n" + string.Format("{0:D2}:{1:D2}:{2:D2}", t.Minutes, t.Seconds, t.Milliseconds);
                 lap1time = time;
+                
             }
 
             if (lap == 2)
@@ -77,10 +84,16 @@ public class GameHandler : MonoBehaviour
                 SceneManager.LoadScene("ScoreScene");
             }
             lap++;
+            lapText.text = "Lap: " + lap + "/" + 3;
         }
         
         
 
+    }
+
+    public void StartTimer()
+    {
+        start = true;
     }
 
     public void GatePassed(int i)

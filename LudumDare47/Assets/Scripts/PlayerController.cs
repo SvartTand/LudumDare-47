@@ -31,6 +31,13 @@ public class PlayerController : MonoBehaviour
 
     public Text boostText;
 
+    public float startTimer = 3;
+    public Text StartText;
+
+    private bool started = false;
+
+    public GameHandler gameHandler;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,96 +51,116 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Hamster.transform.position = transform.position;
-        //joint.anchor = transform.position;
-        if(boosts < maxBoosts)
+        startTimer -= Time.deltaTime;
+
+        StartText.text = startTimer.ToString("0");
+
+        if(startTimer <= 0)
         {
-            timer -= Time.deltaTime;
-            if(timer <= 0)
+            started = true;
+            StartText.text = "Go!!";
+            gameHandler.StartTimer();
+        }
+
+        if(startTimer <= -3)
+        {
+            StartText.text = "";
+        }
+
+        if (started)
+        {
+            Hamster.transform.position = transform.position;
+            //joint.anchor = transform.position;
+            if (boosts < maxBoosts)
             {
-                boosts++;
-                timer = boostTimer;
+                timer -= Time.deltaTime;
+                if (timer <= 0)
+                {
+                    boosts++;
+                    timer = boostTimer;
+                }
+
+                boostText.text = "Boosts: \n" + boosts + "/" + maxBoosts + "\n" + timer.ToString("0.0");
+
             }
 
-            boostText.text = "Boosts: \n" + boosts +  "/" + maxBoosts + "\n" + timer.ToString("0.0");
 
-        }
-        
-
-        if(Input.GetAxis("Horizontal") > 0)
-        {
-            HamsterAnimation.Play("HamsterRun");
-            Hamster.transform.localScale = new Vector3(-1, 1, 1);
-
-        }
-        else if(Input.GetAxis("Horizontal") < 0)
-        {
-            HamsterAnimation.Play("HamsterRun");
-            Hamster.transform.localScale = new Vector3(1, 1, 1);
-        }
-        else
-        {
-            HamsterAnimation.Play("HamsterIdle");
-        }
-
-        if (IsGrounded())
-        {
-            rb.AddForce(new Vector2(0, Input.GetAxis("Horizontal") * Time.deltaTime * rotForce));
-            rb.AddForce(new Vector2(Input.GetAxis("Horizontal") * Time.deltaTime * rotForce, 0));
-        }
-
-        if (Input.GetKeyDown(KeyCode.Space) && boosts > 0)
-        {
-            boosts--;
-            if (Hamster.transform.localScale.x <= 0)
+            if (Input.GetAxis("Horizontal") > 0)
             {
-                rb.AddForce(Vector2.right * jumpForce);
+                HamsterAnimation.Play("HamsterRun");
+                Hamster.transform.localScale = new Vector3(-1, 1, 1);
+
+            }
+            else if (Input.GetAxis("Horizontal") < 0)
+            {
+                HamsterAnimation.Play("HamsterRun");
+                Hamster.transform.localScale = new Vector3(1, 1, 1);
             }
             else
             {
-                rb.AddForce(Vector2.left * jumpForce);
+                HamsterAnimation.Play("HamsterIdle");
+            }
+
+            if (IsGrounded())
+            {
+                rb.AddForce(new Vector2(0, Input.GetAxis("Horizontal") * Time.deltaTime * rotForce));
+                rb.AddForce(new Vector2(Input.GetAxis("Horizontal") * Time.deltaTime * rotForce, 0));
+            }
+
+            if (Input.GetKeyDown(KeyCode.Space) && boosts > 0)
+            {
+                boosts--;
+                if (Hamster.transform.localScale.x <= 0)
+                {
+                    rb.AddForce(Vector2.right * jumpForce);
+                }
+                else
+                {
+                    rb.AddForce(Vector2.left * jumpForce);
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.W) && IsGrounded())
+            {
+                rb.AddForce(Vector2.up * jumpForce);
+            }
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
+
+                //Debug.Log(mousePos2D);
+                joint.connectedBody = world;
+                joint.connectedAnchor = mousePos2D;
+
+
+
+                LineList[0] = transform.position;
+
+                LineList[1] = new Vector3(joint.connectedAnchor.x, joint.connectedAnchor.y, 0);
+                LineRenderer.gameObject.active = true;
+                LineRenderer.SetPositions(LineList);
+
+                //Debug.Log(joint.connectedAnchor.y + ", " + mousePos2D.y + ", " + LineList[1].y);
+
+
+            }
+
+            if (Input.GetMouseButton(0))
+            {
+                LineList[0] = transform.position;
+                LineRenderer.SetPositions(LineList);
+
+            }
+
+            if (Input.GetMouseButtonUp(0))
+            {
+                joint.connectedBody = rb;
+                LineRenderer.gameObject.active = false;
             }
         }
-
-        if (Input.GetKeyDown(KeyCode.W) && IsGrounded())
-        {
-            rb.AddForce(Vector2.up * jumpForce);
-        }
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
-
-            //Debug.Log(mousePos2D);
-            joint.connectedBody = world;
-            joint.connectedAnchor = mousePos2D;
-            
-
-
-            LineList[0] = transform.position;
-
-            LineList[1] = new Vector3(joint.connectedAnchor.x, joint.connectedAnchor.y, 0);
-            LineRenderer.gameObject.active = true;
-            LineRenderer.SetPositions(LineList);
-
-            //Debug.Log(joint.connectedAnchor.y + ", " + mousePos2D.y + ", " + LineList[1].y);
-
-
-        }
-
-        if (Input.GetMouseButton(0))
-        {
-            LineList[0] = transform.position;
-            LineRenderer.SetPositions(LineList);
-
-        }
-
-        if (Input.GetMouseButtonUp(0))
-        {
-            joint.connectedBody = rb;
-            LineRenderer.gameObject.active = false;
-        }
+        
 
         
 
