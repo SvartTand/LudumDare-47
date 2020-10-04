@@ -38,6 +38,15 @@ public class PlayerController : MonoBehaviour
 
     public GameHandler gameHandler;
 
+    public AudioSource rolling;
+    public bool playingRoll = false;
+    public float speedTreshhold;
+
+    public AudioSource Hook;
+
+    public AudioSource YeahaSource;
+    public AudioClip[] YeahaSounds;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -84,6 +93,23 @@ public class PlayerController : MonoBehaviour
 
             }
 
+            if (IsGrounded() && rb.velocity.magnitude >= speedTreshhold)
+            {
+                if (!rolling.isPlaying)
+                {
+                    rolling.Play();
+                }
+
+                rolling.volume = rb.velocity.magnitude * 0.1f;
+            }
+            else
+            {
+                if (rolling.isPlaying)
+                {
+                    rolling.Stop();
+                }
+            }
+
 
             if (Input.GetAxis("Horizontal") > 0)
             {
@@ -109,6 +135,8 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Space) && boosts > 0)
             {
+                YeahaSource.clip = YeahaSounds[Random.Range(0, YeahaSounds.Length - 1)];
+                YeahaSource.Play();
                 boosts--;
                 if (Hamster.transform.localScale.x <= 0)
                 {
@@ -123,6 +151,9 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.W) && IsGrounded())
             {
                 rb.AddForce(Vector2.up * jumpForce);
+
+                YeahaSource.clip = YeahaSounds[Random.Range(0, YeahaSounds.Length - 1)];
+                YeahaSource.Play();
             }
 
             if (Input.GetMouseButtonDown(0))
@@ -134,6 +165,7 @@ public class PlayerController : MonoBehaviour
                 joint.connectedBody = world;
                 joint.connectedAnchor = mousePos2D;
 
+                Hook.Play();
 
 
                 LineList[0] = transform.position;
