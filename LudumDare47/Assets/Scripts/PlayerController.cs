@@ -117,7 +117,7 @@ public class PlayerController : MonoBehaviour
             LineRenderer.gameObject.active = true;
             LineRenderer.SetPositions(LineList);
 
-            Debug.Log(joint.connectedAnchor.y + ", " + mousePos2D.y + ", " + LineList[1].y);
+            //Debug.Log(joint.connectedAnchor.y + ", " + mousePos2D.y + ", " + LineList[1].y);
 
 
         }
