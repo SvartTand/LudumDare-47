@@ -4,7 +4,7 @@ using System.Collections;
 public class Highscores : MonoBehaviour
 {
 
-    const string privateCode = "fCCUhaDMKUie-jFm1wVFfwuZQfqQgcQEyhuyTyMlOjzA";
+    const string privateCode = "";
     const string publicCode = "5f79a1adeb371809c463bc72";
     const string webURL = "http://dreamlo.com/lb/";
 

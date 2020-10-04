@@ -95,7 +95,11 @@ public class DisplayHighscores : MonoBehaviour
 
     public void PlayPressed()
     {
-        Destroy(score.gameObject);
+        if (score != null) {
+            Destroy(score.gameObject);
+        }
+    
+
         SceneManager.LoadScene("PlayScene");
     }
 }
