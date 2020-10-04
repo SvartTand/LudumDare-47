@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class PlayerController : MonoBehaviour
 {
@@ -22,6 +24,13 @@ public class PlayerController : MonoBehaviour
     public LineRenderer LineRenderer;
     public Vector3[] LineList;
 
+    public int maxBoosts = 3;
+    private int boosts;
+    public float boostTimer = 3;
+    private float timer = 0;
+
+    public Text boostText;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +38,7 @@ public class PlayerController : MonoBehaviour
         Debug.Log(gameObject.GetComponent<Collider2D>().bounds.extents.y);
         LineList = new Vector3[2];
         LineRenderer.SetPositions(LineList);
+        boosts = maxBoosts;
     }
 
     // Update is called once per frame
@@ -36,7 +46,18 @@ public class PlayerController : MonoBehaviour
     {
         Hamster.transform.position = transform.position;
         //joint.anchor = transform.position;
+        if(boosts < maxBoosts)
+        {
+            timer -= Time.deltaTime;
+            if(timer <= 0)
+            {
+                boosts++;
+                timer = boostTimer;
+            }
 
+            boostText.text = "Boosts: \n" + boosts +  "/" + maxBoosts + "\n" + timer.ToString("0.0");
+
+        }
         
 
         if(Input.GetAxis("Horizontal") > 0)
@@ -61,8 +82,9 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(new Vector2(Input.GetAxis("Horizontal") * Time.deltaTime * rotForce, 0));
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && boosts > 0)
         {
+            boosts--;
             if (Hamster.transform.localScale.x <= 0)
             {
                 rb.AddForce(Vector2.right * jumpForce);
